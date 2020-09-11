@@ -1,10 +1,19 @@
 package calculatorfx.controller;
 
+import calculatorfx.view.ViewFactory;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class CalculatorWindowController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class CalculatorWindowController extends BaseController implements Initializable {
+
+    public CalculatorWindowController(ViewFactory viewFactory, String fxmlFileName) {
+        super(viewFactory, fxmlFileName);
+    }
 
     @FXML
     private Label lblResults;
@@ -57,14 +66,17 @@ public class CalculatorWindowController {
     @FXML
     private Button btnEquals;
 
+
     @FXML
     void numberPressed() {
-
     }
 
     @FXML
     void numberPressedAction() {
-
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }

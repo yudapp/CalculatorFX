@@ -6,6 +6,8 @@ module CalculatorFX {
     requires javafx.web;
 
     opens calculatorfx;
+    opens calculatorfx.controller;
+    opens calculatorfx.view;
 
 
 
