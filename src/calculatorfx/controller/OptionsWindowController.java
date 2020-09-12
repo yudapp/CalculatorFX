@@ -1,4 +1,9 @@
 package calculatorfx.controller;
+/**
+ * OptionsWindowController.java
+ * Demo subclass
+ * NOT IN USE
+ */
 
 import calculatorfx.view.ViewFactory;
 

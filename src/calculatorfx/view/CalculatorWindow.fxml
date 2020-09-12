@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -17,16 +18,17 @@
             <menus>
             <Menu mnemonicParsing="false" text="File">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="clearScreen" mnemonicParsing="false" onAction="#clearScreen" text="Clear screen" />
+                  <MenuItem fx:id="menuClose" mnemonicParsing="false" onAction="#exitApplication" text="Close" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Options">
                <items>
                   <Menu mnemonicParsing="false" text="Theme">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Light Theme" />
-                        <MenuItem mnemonicParsing="false" text="Default Theme" />
-                        <MenuItem mnemonicParsing="false" text="Dark Theme" />
+                        <MenuItem fx:id="menuLightTheme" mnemonicParsing="false" onAction="#selectLightTheme" text="Light Theme" />
+                        <MenuItem fx:id="menuDefaultTheme" mnemonicParsing="false" onAction="#selectDefaultTheme" text="Default Theme" />
+                        <MenuItem fx:id="menuDarkTheme" mnemonicParsing="false" onAction="#selectDarkTheme" text="Dark Theme" />
                      </items>
                   </Menu>
                </items>
@@ -56,6 +58,9 @@
                     <font>
                         <Font size="24.0" />
                     </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
                 </Button>
                 <Button fx:id="btnEight" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#numberPressed" text="8" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <font>
@@ -67,7 +72,7 @@
                         <Font size="24.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnDivide" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#numberPressedAction" text="/" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <Button fx:id="divide" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#numberPressedAction" text="/" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <font>
                         <Font size="24.0" />
                     </font>
@@ -87,7 +92,7 @@
                         <Font size="24.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnSubtract" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#numberPressedAction" text="-" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                <Button fx:id="minus" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#numberPressedAction" text="-" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                     <font>
                         <Font size="24.0" />
                     </font>
@@ -107,12 +112,12 @@
                         <Font size="24.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnAddition" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#numberPressedAction" text="+" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                <Button fx:id="plus" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#numberPressedAction" text="+" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnSignChange" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#numberPressedAction" text="+/-" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                <Button fx:id="sign" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#numberPressedAction" text="+/-" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                     <font>
                         <Font size="24.0" />
                     </font>
@@ -122,12 +127,12 @@
                         <Font size="24.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnPeriod" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#numberPressedAction" text="." textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                <Button fx:id="btnPeriod" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#numberPressed" text="." textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnEquals" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#numberPressedAction" text="=" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                <Button fx:id="equals" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#numberPressedAction" text="=" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                     <font>
                         <Font size="24.0" />
                     </font>

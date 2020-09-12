@@ -42,7 +42,6 @@ public class ViewFactory {
             e.printStackTrace();
             return;
         }
-
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -50,18 +49,17 @@ public class ViewFactory {
         stage.show();
     }
 
-    public void closeStage(Stage stageToClose){
+    //implement this when we are using multiple windows eg. an options window
+    public void closeStage(Stage stageToClose) {
         activeStages.remove(stageToClose);
     }
 
-    public void updateStyles() {
+    public void updateStyles(ColorTheme colorTheme) {
         for (Stage stage : activeStages) {
             Scene scene = stage.getScene();
             //handle css here
             scene.getStylesheets().clear(); //clear style first before applying new ones
             scene.getStylesheets().add(getClass().getResource(ColorTheme.getCssPath(colorTheme)).toExternalForm());
-
         }
-
     }
 }
