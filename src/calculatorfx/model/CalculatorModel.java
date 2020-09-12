@@ -1,23 +1,35 @@
 package calculatorfx.model;
 
+import javafx.fxml.Initializable;
+
 public class CalculatorModel {
 
     public CalculatorModel(){}
 
-    public double calculate(double firstNumber, double secondNumber, String operator){
+    public String calculate(double firstNumber, double secondNumber, String operator){
+        double answer = 0;
         switch(operator){
             case "plus":
-                System.out.println("CASE PLUS "+operator);
-                return firstNumber +secondNumber;
+                 answer = firstNumber +secondNumber;
+                 break;
             case "minus":
-                return firstNumber - secondNumber;
+                answer = firstNumber - secondNumber;
+                break;
             case"divide":
-                if(secondNumber == 0) return 0;
-                return firstNumber/secondNumber;
+                if(secondNumber == 0) answer = 0;
+                answer = firstNumber/secondNumber;
+                break;
             case"multiply":
-                return firstNumber * secondNumber;
+                answer = firstNumber * secondNumber;
+                break;
             default:
-                return 0;
+                answer = 0;
+        }
+        //if an integer
+        if(answer == (int) answer){
+            return String.valueOf((int) answer);
+        } else {
+            return String.valueOf(answer);
         }
     }
 

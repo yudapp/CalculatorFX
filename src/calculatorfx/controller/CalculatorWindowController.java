@@ -16,15 +16,17 @@ import java.util.ResourceBundle;
 
 public class CalculatorWindowController extends BaseController implements Initializable {
 
-    private boolean signPositive = true;
-    private double firstNumber = 0;
+    private String firstNumber = "";
     private String operator = "";
     private boolean start = true;
-    private CalculatorModel  calculatorModel = new CalculatorModel();
+    private CalculatorModel calculatorModel = new CalculatorModel();
 
     public CalculatorWindowController(ViewFactory viewFactory, String fxmlFileName) {
         super(viewFactory, fxmlFileName);
     }
+
+    @FXML
+    private MenuItem clearScreen;
 
     @FXML
     private MenuItem menuClose;
@@ -39,9 +41,6 @@ public class CalculatorWindowController extends BaseController implements Initia
     private MenuItem menuDarkTheme;
 
     @FXML
-    private MenuItem clearScreen;
-
-    @FXML
     private Label lblResults;
 
     @FXML
@@ -54,7 +53,7 @@ public class CalculatorWindowController extends BaseController implements Initia
     private Button btnNine;
 
     @FXML
-    private Button btnDivide;
+    private Button divide;
 
     @FXML
     private Button btnFour;
@@ -66,7 +65,7 @@ public class CalculatorWindowController extends BaseController implements Initia
     private Button btnSix;
 
     @FXML
-    private Button btnSubtract;
+    private Button minus;
 
     @FXML
     private Button btnOne;
@@ -78,19 +77,19 @@ public class CalculatorWindowController extends BaseController implements Initia
     private Button btnThree;
 
     @FXML
-    private Button btnAddition;
+    private Button plus;
 
     @FXML
-    private Button btnSignChange;
+    private Button period;
 
     @FXML
     private Button btnZero;
 
     @FXML
-    private Button btnPeriod;
+    private Button equals;
 
     @FXML
-    private Button btnEquals;
+    private Button multiply;
 
     @FXML
     void exitApplication() {
@@ -99,24 +98,37 @@ public class CalculatorWindowController extends BaseController implements Initia
 
     @FXML
     void clearScreen() {
-    lblResults.setText("");
+        lblResults.setText("");
+        smallLabel.setText("");
+        operator = "";
+        start = true;
+
     }
+
+    @FXML
+    private Label smallLabel;
 
 
     @FXML
     void numberPressed(ActionEvent event) {
         String value = ((Button) event.getSource()).getText();
-        if(start){
-            lblResults.setText("");
-            start =false;
+        if (start) {
+            lblResults.setText("0");
+            smallLabel.setText(""); //clear the label
+            start = false;
         }
 
         switch (value) {
             case ".":
+
                 if (lblResults.getText().matches("0")) {
                     lblResults.setText(lblResults.getText() + value);
                 } else if (!lblResults.getText().contains(".")) {
-                    lblResults.setText(lblResults.getText() + value);
+                    if (lblResults.getText().isEmpty()) {
+                        lblResults.setText("0" + value);
+                    } else {
+                        lblResults.setText(lblResults.getText() + value);
+                    }
                 }
                 break;
             default:
@@ -133,33 +145,32 @@ public class CalculatorWindowController extends BaseController implements Initia
     void numberPressedAction(ActionEvent event) {
         //signChange, equals, +, -, /, *
         String operatorPressed = ((Button) event.getSource()).getId();
-         switch (operatorPressed) {
-            case "sign":
-                if (lblResults.getText().charAt(0) != '0') {
-                    if (signPositive) {
-                        signPositive = false;
-                        lblResults.setText("-" + lblResults.getText());
-                    } else {
-                        signPositive = true;
-                        //get first char and check for -
-                        if (lblResults.getText().charAt(0) == '-') {
-                            lblResults.setText(lblResults.getText().substring(1));
-                        }
-                    }
-                }
-                break;
-            case "equals":
-                if(operator.isEmpty()) return; //should have pressed on an operator first, else:
-                String result = Double.toString(calculatorModel.calculate(firstNumber,Double.parseDouble(lblResults.getText()),operator));
-                lblResults.setText(result);
-                operator = "";
-                start = true;
-                break;
-            default:
-                firstNumber = Double.parseDouble(lblResults.getText());
-                lblResults.setText("");
-                operator = operatorPressed;
+        if (operatorPressed.matches("equals")) {
+            if (operator.isEmpty()) return; //should have pressed on an operator first, else:
+            String secondNumber = lblResults.getText();
+            if (lblResults.getText().isEmpty()) {
+                secondNumber = firstNumber;
+            }
+            lblResults.setText(calculatorModel.calculate(Double.parseDouble(firstNumber), Double.parseDouble(secondNumber), operator));
+            smallLabel.setText(firstNumber + " " + getSign(operator) + " " + secondNumber + " = " + lblResults.getText());
+            operator = "";
+            start = true;
+        } else {
+            firstNumber = lblResults.getText();
+            smallLabel.setText(lblResults.getText() + " " + getSign(operatorPressed));
+            lblResults.setText("");
+            operator = operatorPressed;
         }
+    }
+
+
+    public String getSign(String value) {
+        if (value.equals("equals")) return "=";
+        if (value.equals("minus")) return "-";
+        if (value.equals("plus")) return "+";
+        if (value.equals("multiply")) return "x";
+        if (value.equals("divide")) return "/";
+        return "";
     }
 
     @FXML
